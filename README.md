@@ -15,6 +15,7 @@ php artisan migrate
 ## TODO
 
 - [ ] Eloquent model & migration
+- [ ] GitHub Actions https://kirschbaumdevelopment.com/insights/laravel-github-actions
 - [ ] Indexing & Artisan command
 - [ ] Searching
 - [ ] Where clauses and soft deletes

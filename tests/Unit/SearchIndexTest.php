@@ -8,7 +8,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class SearchIndexTest extends TestCase
 {
-    //use RefreshDatabase;
+    use RefreshDatabase;
 
     /** @test */
     public function can_create_model()

@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('search_index', function (Blueprint $table) {
             $table->id();
-            $table->morphs('searchable');
+            $table->unsignedBigInteger('model_id');
+            $table->string('index')->index();
             $table->string('field')->index();
             $table->string('language_code')->index();
             $table->text('content');
