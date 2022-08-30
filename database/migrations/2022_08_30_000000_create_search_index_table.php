@@ -15,8 +15,13 @@ return new class extends Migration
     {
         Schema::create('search_index', function (Blueprint $table) {
             $table->id();
-
+            $table->morphs('searchable');
+            $table->string('field')->index();
+            $table->string('language_code')->index();
+            $table->text('content');
             $table->timestamps();
+
+            $table->fullText('content');
         });
     }
 
