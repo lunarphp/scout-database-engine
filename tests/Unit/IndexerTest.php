@@ -6,6 +6,7 @@ use GetCandy\ScoutDatabaseEngine\SearchIndex;
 use GetCandy\ScoutDatabaseEngine\Tests\TestCase;
 use GetCandy\ScoutDatabaseEngine\Tests\Stubs\Post;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Artisan;
 
 class IndexerTest extends TestCase
 {
@@ -79,5 +80,31 @@ class IndexerTest extends TestCase
             'field' => 'title',
             'content' => 'Example Post',
         ]);
+    }
+
+    /** @test */
+    public function can_flush_data()
+    {
+        $post = new Post();
+        $post->title = 'Example Post';
+        $post->body = 'Test 1 2 3';
+        $post->save();
+
+        $post = new Post();
+        $post->title = 'Example Post 2';
+        $post->body = 'Test 4 5 6';
+        $post->save();
+
+        $post = new Post();
+        $post->title = 'Example Post 3';
+        $post->body = 'Test 7 8 9';
+        $post->save();
+
+        // 3 models x 2 fields = 6
+        $this->assertDatabaseCount('search_index', 6);
+
+        Artisan::call('scout:flush "GetCandy\\\ScoutDatabaseEngine\\\Tests\\\Stubs\\\Post"');
+
+        $this->assertDatabaseCount('search_index', 0);
     }
 }

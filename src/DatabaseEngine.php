@@ -165,7 +165,7 @@ class DatabaseEngine extends Engine
      */
     public function flush($model)
     {
-        SearchIndex::truncate();
+        SearchIndex::where('index', '=', $model->searchableAs())->delete();
     }
 
     /**
