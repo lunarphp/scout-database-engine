@@ -1,5 +1,5 @@
 on: push
-name: MySQL Tests
+name: PostgreSQL Tests
 jobs:
   phpunit:
     runs-on: ubuntu-latest
