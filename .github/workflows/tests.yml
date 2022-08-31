@@ -1,5 +1,5 @@
 on: push
-name: CI
+name: Tests
 jobs:
   phpunit:
     runs-on: ubuntu-latest
@@ -27,7 +27,7 @@ jobs:
 
     - name: Prepare Laravel Application
       run: |
-        cp .env.ci .env
+        cp .env.tests .env
         php artisan key:generate
 
     - name: Run Testsuite
