@@ -8,7 +8,6 @@ This package introduces an Eloquent model called `SearchIndex`. It will index th
 
 ```sh
 composer require getcandy/scout-database-engine
-php artisan vendor:publish --tag=scout-database-engine
 php artisan migrate
 ```
 

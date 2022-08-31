@@ -36,6 +36,6 @@ class SearchTest extends TestCase
 
         $posts = Post::search('Lamborghini')->get();
 
-        dump($posts);
+        $this->assertEquals($posts->first()->body, 'Lamborghini');
     }
 }

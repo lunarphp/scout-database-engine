@@ -19,5 +19,9 @@ class ScoutDatabaseServiceProvider extends ServiceProvider
         });
 
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+
+        $this->publishes([
+            __DIR__.'/../database/migrations/' => database_path('migrations'),
+        ], 'scout-database-engine');
     }
 }
