@@ -89,9 +89,7 @@ class DatabaseEngine extends Engine
      */
     public function search(Builder $builder)
     {
-        return SearchIndex::where('index', '=', $builder->model->searchableAs())
-            ->whereFullText('content', $builder->query)
-            ->get();
+        return $this->getSearchQuery($builder)->get();
     }
 
     /**
@@ -104,14 +102,20 @@ class DatabaseEngine extends Engine
      */
     public function paginate(Builder $builder, $perPage, $page)
     {
-        $query = SearchIndex::where('index', '=', $builder->model->searchableAs())
-            ->whereFullText('content', $builder->query)
-            ->limit($perPage);
-
         $offset = $perPage * ($page - 1);
 
-        return $query->offset($offset)
+        return $this->getSearchQuery($builder)
+            ->limit($perPage)
+            ->offset($offset)
             ->get();
+    }
+
+    protected function getSearchQuery(Builder $builder)
+    {
+        $index = $this->getIndexFromBuilder($builder);
+
+        return SearchIndex::where('index', '=', $index)
+            ->whereFullText('content', $builder->query);
     }
 
     /**
@@ -209,5 +213,16 @@ class DatabaseEngine extends Engine
     public function deleteIndex($name)
     {
         //
+    }
+
+    /**
+     * Gets the index name to use.
+     *
+     * @param  \Laravel\Scout\Builder  $builder
+     * @return string
+     */
+    protected function getIndexFromBuilder(Builder $builder)
+    {
+        return $builder->index ?: $builder->model->searchableAs();
     }
 }

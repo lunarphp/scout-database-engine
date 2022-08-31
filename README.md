@@ -13,10 +13,13 @@ php artisan migrate
 
 ## TODO
 
-- [ ] Eloquent model & migration
-- [ ] GitHub Actions https://kirschbaumdevelopment.com/insights/laravel-github-actions
-- [ ] Indexing & Artisan command
-- [ ] Searching
-- [ ] Where clauses and soft deletes
+- [x] Eloquent model & migration
+- [x] GitHub Actions https://kirschbaumdevelopment.com/insights/laravel-github-actions
+- [x] Indexing
+- [x] Searching
+- [x] Pagination
+- [ ] Where clauses
+- [ ] Soft deletes
+- [ ] Customisation
 - [ ] Database table in config
 - [ ] MySQL & PostgreSQL specific config	
