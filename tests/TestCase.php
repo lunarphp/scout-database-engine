@@ -6,10 +6,18 @@ use GetCandy\ScoutDatabaseEngine\ScoutDatabaseServiceProvider;
 
 class TestCase extends \Orchestra\Testbench\TestCase
 {
+    /**
+     * Get package providers.
+     *
+     * @param  \Illuminate\Foundation\Application  $app
+     *
+     * @return array<int, string>
+     */
     protected function getPackageProviders($app)
     {
         return [
             ScoutDatabaseServiceProvider::class,
+            TestServiceProvider::class,
         ];
     }
 
@@ -18,8 +26,9 @@ class TestCase extends \Orchestra\Testbench\TestCase
      *
      * @return void
      */
-    protected function defineDatabaseMigrations()
-    {
-        $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
-    }
+    // protected function defineDatabaseMigrations()
+    // {
+    //     $this->artisan('migrate')->run();
+    //     $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
+    // }
 }

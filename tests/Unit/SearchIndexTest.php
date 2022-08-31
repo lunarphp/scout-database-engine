@@ -14,6 +14,12 @@ class SearchIndexTest extends TestCase
     public function can_create_model()
     {
         $searchIndex = new SearchIndex();
+        $searchIndex->model_id = 1;
+        $searchIndex->index = 'posts';
+        $searchIndex->field = 'title';
+        $searchIndex->language_code = 'en';
+        $searchIndex->content = 'Test 1 2 3';
+        $searchIndex->save();
 
         $this->assertInstanceOf(SearchIndex::class, $searchIndex);
     }
