@@ -89,7 +89,11 @@ class DatabaseEngine extends Engine
      */
     public function search(Builder $builder)
     {
-        //...
+        $results = SearchIndex::where('index', '=', $builder->model->searchableAs())
+            ->whereFullText('content', $builder->query)
+            ->get();
+
+        return $results;
     }
 
     /**
@@ -113,7 +117,7 @@ class DatabaseEngine extends Engine
      */
     public function mapIds($results)
     {
-        return collect($results['hits'])->pluck('objectID')->values();
+        return $results->pluck('key')->all();
     }
 
     /**
@@ -126,11 +130,20 @@ class DatabaseEngine extends Engine
      */
     public function map(Builder $builder, $results, $model)
     {
-        // if (count($results['hits']) === 0) {
-        //     return $model->newCollection();
-        // }
+        if (count($results) === 0) {
+            return $model->newCollection();
+        }
 
-        //...
+        $objectIds = $results->pluck('key')->all();
+
+        return $model->getScoutModelsByIds(
+            $builder,
+            $objectIds
+        )->filter(function ($model) use ($objectIds) {
+            return in_array($model->getScoutKey(), $objectIds);
+        // })->sortBy(function ($model) use ($objectIdPositions) {
+        //     return $objectIdPositions[$model->getScoutKey()];
+        })->values();
     }
 
     /**
@@ -154,7 +167,7 @@ class DatabaseEngine extends Engine
      */
     public function getTotalCount($results)
     {
-        return 0;
+        return $results->unique()->count();
     }
 
     /**
