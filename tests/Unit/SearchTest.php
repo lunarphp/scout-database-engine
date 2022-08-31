@@ -38,4 +38,32 @@ class SearchTest extends TestCase
 
         $this->assertEquals($posts->first()->body, 'Lamborghini');
     }
+
+    /** @test */
+    public function can_paginate()
+    {
+        $post = new Post();
+        $post->title = 'Supercar';
+        $post->body = 'Lamborghini';
+        $post->save();
+
+        $post = new Post();
+        $post->title = 'Supercar';
+        $post->body = 'Ferrari';
+        $post->save();
+
+        $post = new Post();
+        $post->title = 'Supercar';
+        $post->body = 'Aston Martin';
+        $post->save();
+
+        $post = new Post();
+        $post->title = 'Supercar';
+        $post->body = 'Mclaren';
+        $post->save();
+
+        $posts = Post::search('Lamborghini')->paginate();
+
+        $this->assertEquals($posts->first()->body, 'Lamborghini');
+    }
 }

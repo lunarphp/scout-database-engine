@@ -89,11 +89,9 @@ class DatabaseEngine extends Engine
      */
     public function search(Builder $builder)
     {
-        $results = SearchIndex::where('index', '=', $builder->model->searchableAs())
+        return SearchIndex::where('index', '=', $builder->model->searchableAs())
             ->whereFullText('content', $builder->query)
             ->get();
-
-        return $results;
     }
 
     /**
@@ -106,7 +104,14 @@ class DatabaseEngine extends Engine
      */
     public function paginate(Builder $builder, $perPage, $page)
     {
-        //...
+        $query = SearchIndex::where('index', '=', $builder->model->searchableAs())
+            ->whereFullText('content', $builder->query)
+            ->limit($perPage);
+
+        $offset = $perPage * ($page - 1);
+
+        return $query->offset($offset)
+            ->get();
     }
 
     /**
@@ -130,7 +135,7 @@ class DatabaseEngine extends Engine
      */
     public function map(Builder $builder, $results, $model)
     {
-        if (count($results) === 0) {
+        if ($results === null) {
             return $model->newCollection();
         }
 
@@ -167,7 +172,7 @@ class DatabaseEngine extends Engine
      */
     public function getTotalCount($results)
     {
-        return $results->unique()->count();
+        return $results ? $results->unique()->count() : 0;
     }
 
     /**
