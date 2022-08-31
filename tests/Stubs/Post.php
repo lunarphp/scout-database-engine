@@ -3,6 +3,7 @@
 namespace GetCandy\ScoutDatabaseEngine\Tests\Stubs;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 use Laravel\Scout\Searchable;
 
 class Post extends Model
@@ -23,6 +24,20 @@ class Post extends Model
      */
     public function searchableAs()
     {
-        return 'posts_index';
+        return 'posts';
+    }
+
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        $array = $this->toArray();
+
+        // Customize the data array...
+
+        return Arr::only($array, ['title', 'body']);
     }
 }

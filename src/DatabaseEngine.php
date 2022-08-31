@@ -40,7 +40,29 @@ class DatabaseEngine extends Engine
             return;
         }
 
-        //...
+        $objects = $models->each(function ($model) {
+            // Clear existing index data
+            SearchIndex::where('key', '=', $model->getScoutKey())
+                ->where('index', '=', $model->searchableAs())
+                ->delete();
+
+            if (empty($searchableData = $model->toSearchableArray())) {
+                return;
+            }
+
+            $indexes = collect($searchableData)->map(function ($data, $field) use ($model) {
+                return [
+                    'key' => $model->getScoutKey(),
+                    'index' => $model->searchableAs(),
+                    'field' => $field,
+                    'content' => $data,
+                ];
+            });
+
+            SearchIndex::insert($indexes->values()->all());
+
+            return $indexes;
+        });
     }
 
     /**
@@ -51,7 +73,12 @@ class DatabaseEngine extends Engine
      */
     public function delete($models)
     {
-        //...
+        $models->each(function ($model) {
+            // Clear existing index data
+            SearchIndex::where('key', '=', $model->getScoutKey())
+                ->where('index', '=', $model->searchableAs())
+                ->delete();
+        });
     }
 
     /**
@@ -138,7 +165,7 @@ class DatabaseEngine extends Engine
      */
     public function flush($model)
     {
-        //...
+        SearchIndex::truncate();
     }
 
     /**
@@ -152,7 +179,7 @@ class DatabaseEngine extends Engine
      */
     public function createIndex($name, array $options = [])
     {
-        //throw new Exception('Indexes are created automatically upon adding objects.');
+        //
     }
 
     /**
@@ -163,6 +190,6 @@ class DatabaseEngine extends Engine
      */
     public function deleteIndex($name)
     {
-        return true;
+        //
     }
 }
