@@ -25,5 +25,9 @@ jobs:
       run: |
         composer install --no-scripts
 
+    - name: Prepare Laravel Application
+      run: |
+        cp .env.testing .env
+
     - name: Run Testsuite
       run: vendor/bin/phpunit
