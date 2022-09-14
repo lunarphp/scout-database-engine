@@ -1,9 +1,9 @@
 <?php
 
-namespace GetCandy\ScoutDatabaseEngine\Tests\Unit;
+namespace Lunar\ScoutDatabaseEngine\Tests\Unit;
 
-use GetCandy\ScoutDatabaseEngine\SearchIndex;
-use GetCandy\ScoutDatabaseEngine\Tests\TestCase;
+use Lunar\ScoutDatabaseEngine\SearchIndex;
+use Lunar\ScoutDatabaseEngine\Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class SearchIndexTest extends TestCase

@@ -7,7 +7,7 @@ This package introduces an Eloquent model called `SearchIndex`. It will index th
 ## Installation
 
 ```sh
-composer require getcandy/scout-database-engine
+composer require lunarphp/scout-database-engine
 php artisan migrate
 ```
 
@@ -22,4 +22,4 @@ php artisan migrate
 - [ ] Soft deletes
 - [ ] Customisation
 - [ ] Database table in config
-- [ ] MySQL & PostgreSQL specific config	
+- [ ] MySQL & PostgreSQL specific config

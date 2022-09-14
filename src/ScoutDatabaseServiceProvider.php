@@ -1,6 +1,6 @@
 <?php
 
-namespace GetCandy\ScoutDatabaseEngine;
+namespace Lunar\ScoutDatabaseEngine;
 
 use Illuminate\Support\ServiceProvider;
 use Laravel\Scout\EngineManager;
