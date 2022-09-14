@@ -1,8 +1,8 @@
 <?php
 
-namespace GetCandy\ScoutDatabaseEngine\Tests;
+namespace Lunar\ScoutDatabaseEngine\Tests;
 
-use GetCandy\ScoutDatabaseEngine\ScoutDatabaseServiceProvider;
+use Lunar\ScoutDatabaseEngine\ScoutDatabaseServiceProvider;
 use Laravel\Scout\ScoutServiceProvider;
 
 class TestCase extends \Orchestra\Testbench\TestCase

@@ -1,29 +1,29 @@
 {
-    "name": "getcandy/scout-database-engine",
+    "name": "lunarphp/scout-database-engine",
     "description": "Laravel Scout engine to allow full searching in MySQL and PostgreSQL.",
     "keywords": ["laravel", "scout", "search"],
     "type": "library",
     "license": "MIT",
     "authors": [
         {
-          "name": "GetCandy",
-          "homepage": "https://getcandy.io/"
+          "name": "Lunar",
+          "homepage": "https://lunarphp.io/"
         }
     ],
     "autoload": {
         "psr-4": {
-            "GetCandy\\ScoutDatabaseEngine\\": "src"
+            "Lunar\\ScoutDatabaseEngine\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "GetCandy\\ScoutDatabaseEngine\\Tests\\": "tests"
+            "Lunar\\ScoutDatabaseEngine\\Tests\\": "tests"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "GetCandy\\ScoutDatabaseEngine\\ScoutDatabaseServiceProvider"
+                "Lunar\\ScoutDatabaseEngine\\ScoutDatabaseServiceProvider"
             ]
         }
     },

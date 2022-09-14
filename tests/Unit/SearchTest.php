@@ -1,10 +1,10 @@
 <?php
 
-namespace GetCandy\ScoutDatabaseEngine\Tests\Unit;
+namespace Lunar\ScoutDatabaseEngine\Tests\Unit;
 
-use GetCandy\ScoutDatabaseEngine\SearchIndex;
-use GetCandy\ScoutDatabaseEngine\Tests\TestCase;
-use GetCandy\ScoutDatabaseEngine\Tests\Stubs\Post;
+use Lunar\ScoutDatabaseEngine\SearchIndex;
+use Lunar\ScoutDatabaseEngine\Tests\TestCase;
+use Lunar\ScoutDatabaseEngine\Tests\Stubs\Post;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class SearchTest extends TestCase

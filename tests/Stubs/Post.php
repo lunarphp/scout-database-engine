@@ -1,6 +1,6 @@
 <?php
 
-namespace GetCandy\ScoutDatabaseEngine\Tests\Stubs;
+namespace Lunar\ScoutDatabaseEngine\Tests\Stubs;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;

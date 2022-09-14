@@ -1,6 +1,6 @@
 <?php
 
-namespace GetCandy\ScoutDatabaseEngine\Tests;
+namespace Lunar\ScoutDatabaseEngine\Tests;
 
 use Illuminate\Support\ServiceProvider;
 

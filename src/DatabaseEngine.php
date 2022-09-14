@@ -1,6 +1,6 @@
 <?php
 
-namespace GetCandy\ScoutDatabaseEngine;
+namespace Lunar\ScoutDatabaseEngine;
 
 use Exception;
 use Illuminate\Database\Eloquent\SoftDeletes;
